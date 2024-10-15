@@ -11,17 +11,66 @@
 <body>
   <form id="form">
     <!-- Associating label with input using "for" is best practice since it's most widely supported. This is explicit association. Implicit association involves wrapping the input with the label element.  -->
-    <label id="username" for="username">Username</label>
+    <!-- <label id="username" for="username">Username</label>
     <input type="text" id="username" aria-labelledby="username" />
     <label> Password
       <input type="password" aria-label="password" />
     </label>
-    <input type="submit" id="submit-button" />
+    <input type="submit" id="submit-button" /> -->
   </form>
 </body>
 
 <script>
+  const schema = {
+    "elements": [
+      {
+        "type": "usernameInput",
+        "id": "username",
+        "label": "Username"
+      },
+      {
+        "type": "passwordInput",
+        "id": "password",
+        "label": "Password"
+      },
+      {
+        "type": "submitButton",
+        "id": "submit",
+        "label": "Submit"
+      }
+    ]
+  }
   const form = document.getElementById("form")
+
+  for (let i = 0; i < schema.elements.length; i++) {
+    const element = schema.elements[i]
+    if (element.type === "usernameInput") {
+      const usernameInput = document.createElement("input")
+      usernameInput.id = element.id
+      const label = document.createElement("label")
+      label.for = element.id
+      label.textContent = element.label
+      form.append(label)
+      form.append(usernameInput)
+    }
+    if (element.type === "passwordInput") {
+      const passwordInput = document.createElement("input")
+      passwordInput.type = "password"
+      passwordInput.id = element.id
+      const label = document.createElement("label")
+      label.for = element.id
+      label.textContent = element.label
+      form.append(label)
+      form.append(passwordInput)
+    }
+    if (element.type === "submitButton") {
+      const submitButton = document.createElement("input")
+      submitButton.type = "submit"
+      submitButton.id = element.id
+      form.append(submitButton)
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log("form has been clicked")
