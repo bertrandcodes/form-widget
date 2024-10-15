@@ -5,19 +5,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Basic Form with Custom JavaScript</title>
+  <link href="./styles.css" rel="stylesheet" />
 </head>
 
 <body>
   <form id="form">
-    <input />
-    <input type="password" />
-    <input type="datetime-local" />
+    <!-- Associating label with input using "for" is best practice since it's most widely supported. This is explicit association. Implicit association involves wrapping the input with the label element.  -->
+    <label id="username" for="username">Username</label>
+    <input type="text" id="username" aria-labelledby="username" />
+    <label> Password
+      <input type="password" aria-label="password" />
+    </label>
+    <input type="submit" id="submit-button" />
   </form>
 </body>
 
 <script>
   const form = document.getElementById("form")
-  form.addEventListener("click", () => console.log("form has been clicked"))
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log("form has been clicked")
+  }
+  form.addEventListener("click", handleSubmit)
 </script>
 
 </html>
+
+<!-- Use a schema json to append forms -->
+<!-- Validates the user’s email address
+Manages focus and uses appropriate focus styles
+Uses appropriate, semantic elements
+Provides a baseline accessible user experience -->
+<!-- Plan out how to add custom validation externally -->
+<!-- Go through answer for input on that page to see how close you did to getting best practices -->
