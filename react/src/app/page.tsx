@@ -1,10 +1,12 @@
-import InputField from "./InputField";
+import NewForm from './NewForm';
+import OldForm from './OldForm';
 
-export default function Form() {
+export default function Home() {
   return (
-    <form>
-      <InputField />
-      <InputField />
-    </form>
+    <>
+      <NewForm />
+      <br />
+      <OldForm />
+    </>
   );
 }
